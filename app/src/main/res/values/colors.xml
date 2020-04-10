@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="fondo">#D6E8FF</color>
+    <color name="Fondobtn">#6893C7</color>
+    <color name="fondoOperaciones">#17AB3B</color>
+    <color name="letra1">#FFFFFF</color>
+    <color name="letra2">#212121</color>
+    <color name="pantalla">#F1F7FF</color>
+    <color name="colorIgual">#DF2626</color>
+
+</resources>
