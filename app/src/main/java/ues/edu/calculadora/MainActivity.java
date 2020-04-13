@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static String numeroWidget = "";
     public static String numeroWidget2 = "";
-    DecimalFormat formato = new DecimalFormat("0.00000");//formato de decimales
+    DecimalFormat formato = new DecimalFormat("0.0000000");//formato de decimales
     private TextView pantalla1;
     private TextView pantalla2;
 
@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
     double NumA = 0, NumB = 0;
     char op;
 
-    public void tecla(View v) {
+    /**
+     * metodo que toma el valor de cada letra ingresada en la interfaz
+     * @param v
+     */
+    public void tecladoNumerico(View v) {
         if (numero <= 11) {
             switch (v.getId()) {
                 case R.id.btn0:
@@ -71,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnPi:
                     texto = texto + "3.14159";
                     break;
+                case R.id.btnE:
+                    texto = texto + "2.71828182";
+                    break;
                 default:
                     break;
             }
@@ -86,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
         pantalla1.setText(texto);
     }
 
+    /**
+     * metodo que sirve para borrar ya sea un numero, toda la pantalla, o solo la pantalla 2
+     * @param v
+     */
     public void borrar(View v) {//3 tipos de borrado
 
         switch (v.getId()) {
@@ -127,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * asigna un punto al texto para ir concatenando en texto 2
+     * @param v
+     */
     public void punto(View v) {//boton punto validado
         if (!Sipunto) {
             if (numero == 0) {
@@ -142,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
         pantalla1.setText(texto);
     }
 
+    /**
+     * mira la tecla ingresada, y realiza la siguiente operacion basica(suma,resta,multiplicacion y division)
+     * @param v
+     */
     public void operacion(View v){
         if(texto.equals("")){//validacion si esta vacio
             if(!pantalla2.getText().equals("")){//cambia el tipo de operación si la pantalla2 tiene datos y la pantalla1 no
@@ -240,6 +259,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * muestra el resultado de las operaciones al ser tecleado
+     * @param v
+     */
     public void Igual(View v){
         if((!texto.equals(""))&&(!texto2.equals(""))){
             op = pantalla2.getText().charAt(pantalla2.getText().length()-1);
@@ -288,6 +311,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * calcula el cuadrado del numero ingresado
+     * @param v
+     */
     public void cuadrado(View v){
         NumA = Double.parseDouble(texto);
         NumA = Math.pow(NumA, 2);
@@ -299,6 +326,10 @@ public class MainActivity extends AppCompatActivity {
             pantalla2.setText("("+texto+")²="+formato.format(NumA));
     }
 
+    /**
+     * calcula la raiz de un numero si es negativa se limpia la pantalla
+     * @param v
+     */
     public void raiz(View v){
         NumA = Double.parseDouble(texto);
 
@@ -330,6 +361,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * cambia el signo al numero ingresado, solo positivo y negativo
+     * @param v
+     */
     public void Signo(View v){
         if(!texto.equals("")){
             texto= "" + (Double.parseDouble(texto)*(-1));
@@ -338,6 +373,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * valida la cantidad maxima y minima de digitos a ingresar despues del punto decimal y sin punto
+     * @param num
+     */
     public void validar (double num){
         double numlimit1=999999999999.999999999999;
         double numlimit2=0.999999999999;
@@ -348,6 +387,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * cambia los textos de las pantallas
+     * @param opcion
+     */
     public void ActualizarNumero (int opcion){
         switch (opcion){
             case 1:
@@ -359,6 +402,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * metodo para bloquear teclas y desbloquear teclas (Todas las teclas)
+     * @param v
+     */
     public void bloqueo(View v){
 
         if(estadoBotones){
@@ -414,6 +461,8 @@ public class MainActivity extends AppCompatActivity {
             igual.setEnabled(false);
             View masMenos = findViewById(R.id.btnSigno);
             masMenos.setEnabled(false);
+            View e = findViewById(R.id.btnE);
+            e.setEnabled(false);
 
             Toast.makeText(getApplicationContext(),"BLOQUEANDO TECLADO",Toast.LENGTH_SHORT).show();
             estadoBotones=false;
@@ -470,6 +519,8 @@ public class MainActivity extends AppCompatActivity {
             igual.setEnabled(true);
             View masMenos = findViewById(R.id.btnSigno);
             masMenos.setEnabled(true);
+            View e = findViewById(R.id.btnE);
+            e.setEnabled(true);
 
             Toast.makeText(getApplicationContext(),"DESBLOQUEANDO TECLADO",Toast.LENGTH_SHORT).show();
             estadoBotones=true;
